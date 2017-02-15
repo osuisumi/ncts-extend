@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.ncts.extend.lego.user.dao.impl.mybatis.UserRegionsMapper">
+	<resultMap id="BaseResultMap" type="com.haoyu.ncts.extend.lego.user.entity.UserRegions">
+		<id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+		<result column="CITY" property="city" jdbcType="VARCHAR" />
+		<result column="COUNTIES" property="counties" jdbcType="VARCHAR" />
+		<result column="IS_LOGINED" property="isLogined" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectByPrimaryKey" parameterType="string" resultMap="BaseResultMap">
+		select USER_ID, PROVINCE, CITY, COUNTIES, IS_LOGINED
+		from USER_REGIONS
+		where USER_ID = #{userId, jdbcType=VARCHAR}
+	</select>
+	<insert id="insert" parameterType="com.haoyu.ncts.extend.lego.user.entity.UserRegions">
+		insert into USER_REGIONS
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="province != null">
+				PROVINCE,
+			</if>
+			<if test="city != null">
+				CITY,
+			</if>
+			<if test="counties != null">
+				COUNTIES,
+			</if>
+			<if test="isLogined != null">
+				IS_LOGINED,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				#{province, jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city, jdbcType=VARCHAR},
+			</if>
+			<if test="counties != null">
+				#{counties, jdbcType=VARCHAR},
+			</if>
+			<if test="isLogined != null">
+				#{isLogined, jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.haoyu.ncts.extend.lego.user.entity.UserRegions">
+		update USER_REGIONS
+		<set>
+			<if test="province != null">
+				PROVINCE = #{province, jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				CITY = #{city, jdbcType=VARCHAR},
+			</if>
+			<if test="counties != null">
+				COUNTIES = #{counties, jdbcType=VARCHAR},
+			</if>
+			<if test="isLogined != null">
+				IS_LOGINED = #{isLogined, jdbcType=CHAR},
+			</if>
+		</set>
+		where USER_ID = #{userId, jdbcType=VARCHAR}
+	</update>
+</mapper>

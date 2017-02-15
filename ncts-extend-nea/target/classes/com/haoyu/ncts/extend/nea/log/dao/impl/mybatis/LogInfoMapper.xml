@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.ncts.extend.nea.log.dao.impl.mybatis.LogInfoMapper">
+	<resultMap id="LogInfoMap" type="com.haoyu.ncts.extend.nea.log.entity.LogInfo">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="INFO" property="info" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<insert id="insert" parameterType="com.haoyu.ncts.extend.nea.log.entity.LogInfo">
+		insert into LOG_INFO(ID, USER_ID, INFO, CREATE_TIME)
+		values(#{id}, #{userId}, #{info},#{createTime, jdbcType=TIMESTAMP})
+	</insert>
+</mapper>
